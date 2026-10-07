@@ -49,3 +49,24 @@ figure[data-align='right'] {
   text-align: right;
   margin-left: auto;
 }
+
+/* Subtitles (Dhub subtitle blocks): a muted line of text under a heading,
+   a size larger under the page title. Docusaurus wraps a page's leading h1
+   in a <header>, so the subtitle follows the header, not the h1. */
+.markdown .subtitle {
+  margin-bottom: var(--ifm-paragraph-margin-bottom);
+  /* Infima's emphasis scale inverts in dark mode, where emphasis-700 is
+     nearly body text; fading the body color mutes it in both themes. */
+  color: color-mix(in srgb, var(--ifm-font-color-base) 70%, transparent);
+}
+
+.markdown :is(h1, h2, h3, h4, h5, h6):has(+ .subtitle),
+.markdown header:has(+ .subtitle) > h1 {
+  margin-bottom: 0.5rem;
+}
+
+.markdown h1 + .subtitle,
+.markdown header:has(> h1) + .subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
